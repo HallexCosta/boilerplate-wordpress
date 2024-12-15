@@ -1,0 +1,38 @@
+name: Deploy FTP to production
+on: 
+  workflow_dispatch:
+jobs:
+  web-deploy:
+    name: 🎉 Deploy
+    runs-on: ubuntu-latest
+    
+    if: github.ref == 'refs/heads/main'
+
+    steps:
+    - name: 🚚 Get latest code
+      uses: actions/checkout@v4
+
+    - name: 🕒 Generate timestamp to update version project
+      run: echo "timestamp=$(date +%s)" >> $GITHUB_ENV
+    
+    - name: 🔨Creating .env file
+      run: |
+        echo "${{ secrets.FTP_PRODUCTION_DEPLOY_ENV }}" | tr -d '\r' > ./src/.env
+        echo -e "\nAPP_VERSION=${{ env.timestamp }}" >> ./src/.env
+
+    - name: ✏️ Write timestamp .htaccess file
+      run: |
+        echo -e "\n\n#Timestamp - ${{ env.timestamp }}" >> ./src/.htaccess
+
+    - name: 📂 Sync files
+      uses: SamKirkland/FTP-Deploy-Action@v4.3.5
+      with:
+        server: ${{ secrets.FTP_PRODUCTION_HOST }}
+        username: ${{ secrets.FTP_PRODUCTION_USERNAME }}
+        password: ${{ secrets.FTP_PRODUCTION_PASSWORD }}
+        local-dir: ./src/ 
+        server-dir: ${{ secrets.FTP_PRODUCTION_PROJECT_DIR }}
+        exclude: |
+          **/.git*
+          **/.git*/**
+          .env.example

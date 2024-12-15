@@ -1,0 +1,54 @@
+
+$fa-font-path: '/wp-content/themes/wpapp/assets/fonts/' !default;
+$path_images: '/wp-content/themes/wpapp/assets/';
+$themePath: '/wp-content/themes/wpapp';
+
+// Colors
+$primary: #FFFFFF;
+$secondary: #000000;
+$secondary66: #00000066;
+$color-text-primary: #FFFFFF;
+$color-text-secondary: #000000;
+$background-primary: #FFFFFF;
+$background-secondary: #000000;
+$border: 1px solid #B6CAF6;
+$error: red;
+
+// Details 
+$box-shadow: 11px 9px 30px 0px rgba(0, 0, 0, 0.15);
+$border-radius: 16px;
+$opacity: 0.5;
+
+// Font 
+$font-bold-title-large: normal 700 80px "Work Sans";
+$font-bold-title-medium: normal 700 32px "Work Sans";
+$font-bold-title-small: normal 700 24px "Work Sans";
+$font-medium-text-large: normal 500 24px "Poppins";
+$font-medium-text-medium: normal 500 18px "Poppins";
+$font-medium-text-small: normal 500 16px "Poppins";
+
+// Input / Textarea
+$padding-input: 12px 24px;
+$border-radius-input: 8px;
+$border-input: 2px solid #B6CAF680;
+
+// Containers primary
+$desktopLarge-container-primary: 1768px;
+$desktop-container-primary: 1300px;
+$laptop-container-primary: 1004px;
+$tablet-container-primary: 748px;
+$mobile-container-primary: 580px;
+
+// Containers secondary
+$desktopLarge-container-secondary: 1482px;
+$desktop-container-secondary: 1080px;
+$laptop-container-secondary: 800px;
+$tablet-container-secondary: 580px;
+$mobile-container-secondary: 480px;
+
+// Section
+$section-pt: 100px;
+$section-pb: 100px;
+
+// px = padding-x or padding left and padding right
+$mobile-px: 15px;

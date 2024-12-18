@@ -17,6 +17,11 @@ services:
       MYSQL_ROOT_PASSWORD: secret
     ports:
       - 33066:3306
+    healthcheck:
+      test: ["CMD", 'mysqladmin', 'ping', '-h', 'localhost', '-u', 'root', '-p$$MYSQL_ROOT_PASSWORD' ]
+      timeout: 5s
+      interval: 5s
+      retries: 3
     volumes:
       - ./.docker/mysql:/var/lib/mysql
       # - ./docker-database.sql:/docker-entrypoint-initdb.d/init.sql
@@ -49,6 +54,8 @@ services:
       - ./src:/var/www/html/
       - ./php.ini:/usr/local/etc/php/php.ini
     restart: always
+    db:
+      condition: service_healthy
     networks:
       - wpapp-network
     extra_hosts:

@@ -1,34 +1,41 @@
-# Project development documentation
-Link: {{GOOGLE_DOCS_LINK}}
+### Required Knowledge for Development and Running the Project
+- Docker  
+- WordPress  
+- MySQL  
+- NPM / NVM
 
-# Repository Branchs
-production - Used to deploy in production environment<br>
-staging - Used to develop and test in local and deploy staging environment
-
-# Requeriments
-Node: v16 <br>
-
-#### Active mode api of Wordpress 
+#### Active mode api of WordPress 
 Url: http://localhost:3001/wp-admin/options-permalink.php <br>
-Enable option: Estrutura personalizada (/blog/%postname%/) <br>
+Enable option: Custom structure (/blog/%postname%/) <br>
 
 #### Install plugins 
-By default, the boilerplate lists the most used plugins for development, feel free to install, configure and use them if necessary.
+By default, the boilerplate lists the most used plugins for development, you can install, configure, and use them if necessary.
 
-## Run Wordpress in Docker
+## Run WordPress in Docker
 ```
-# Clean containers running (fish terminal)
-sudo docker rm -f (sudo docker ps -aq)
+# Clone the repository
+git clone git@github.com:hallancosta/boilerplate-wordpress <your website folder name>
 
 # Run docker
 sudo docker compose -f docker-compose.yml up
 
-# Wait 5 seconds to run full permission on root folder
-sudo chmod 777 -R .
+# Change the own folder access
+sudo chown www-data:www-data <your website folder name>
+
+# Wait 5 seconds to run full permission on your website folder name
+sudo chmod 777 -R <your website folder name>
+
+# If necessary clear containers running
+# bash
+sudo docker rm -f $(sudo docker ps -aq)
+# fish
+sudo docker rm -f (sudo docker ps -aq)
 ```
 
 ## Run build to generate style.css and bundle.js
 ```
+cd <your website folder name>
+
 # Enter the folder
 cd build
 
@@ -44,16 +51,14 @@ npm run watch:docker
 
 #### Configure .env
 Change the environment variables according to each project environment
+```
+cp ./src/env.example cp ./src/env
+```
 
-#### Folder ./plugins
-Somes plugins pro for developmet in builder or code programmatically
-
-#### Folder ./build
-Used to create a custom theme that goes in the wordpress themes folder and wpapp 
-
-#### How to code a new project
-1. Search and change the name of every place that has <b>"wpapp"</b> to the <b>new name</b>, for example <b>"apple"</b>
-2. Turn off the build in docker and, if necessary, delete ./docker/mysql to run the configuration again with the new name in containers, variables and the theme
+# Wordpress 
+Url: http://localhost:3001 <br>
+Username: <br> 
+Password: <br> 
 
 #### Access live reload
 Url: http://localhost:12345
@@ -63,33 +68,19 @@ Url: http://localhost:8080 <br>
 Username: root <br>
 Password: secret
 
-# Wordpress 
-Url: http://localhost:3001 <br>
-Username: <br> 
-Password: <br> 
-Password Access Site Url: senha
-
-# Staging
-Url: https://staging.production.com.br<br>
-DB Host: localhost<br> 
-DB Name: <br>
-DB Username: <br> 
-DB Password: <br> 
-Password Access Site Url: senha
-
-# Production
-Url: https://production.com.br<br>
-DB Host: localhost<br> 
-DB Name: <br>
-DB Username: <br> 
-DB Password: <br>
-
-# Gmail - No Reploy and Analytics and Tag manager
-Username: <br>
-Password: 
-
 # Ngrok
 Url: http://localhost:4551 <br>
+
+# Repository Branchs
+production - Used to deploy in production environment<br>
+staging - Used to develop and test locally and deploy staging environment
+
+#### Folder ./build
+Used to create a custom theme that goes in the WordPress themes folder and wpapp 
+
+#### How to code a new project
+1. Search and change the name of every place that has <b>"wpapp"</b> to the <b>new name</b>, for example <b>"apple"</b>
+2. Turn off the build in docker and, if necessary, delete ./docker/mysql to run the configuration again with the new name in containers, variables and the theme
 
 # Configure the repository secrets for deploy CI/CD
 ```
@@ -114,11 +105,6 @@ FTP_STAGING_DEPLOY_ENV: INSERT ALL LINES FROM .env
    `https://sitedomainproduction.com.br/18112024_sitedomainproduction_d93b86c7197b86e58019_20241118201454_installer.php`
 3. Follow the installer steps and provide the database credentials.
 
-### Required Knowledge for Development and Running the Project
-- Docker  
-- WordPress  
-- MySQL  
-- NPM / NVM
 
 # Author
 | [<img src="https://avatars2.githubusercontent.com/u/60573155?s=115&v=3"><br><sub>@HallanCosta</sub>](https://github.com/HallanCosta) |

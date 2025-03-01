@@ -1,0 +1,83 @@
+services:
+  db:
+    container_name: wpapp-mysql
+    image: mysql:5.7
+    command: [
+      'mysqld',
+      '--character-set-server=utf8mb4',
+      '--collation-server=utf8mb4_unicode_ci',
+      '--default-authentication-plugin=mysql_native_password',
+      '--wait_timeout=28800',
+      '--sql-mode=STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION',
+      '--log_bin_trust_function_creators=1'
+    ]
+    restart: always
+    environment:
+      MYSQL_DATABASE: wpapp 
+      MYSQL_ROOT_PASSWORD: secret
+    ports:
+      - 33066:3306
+    volumes:
+      - ./.docker/mysql:/var/lib/mysql
+      # - ./docker-database.sql:/docker-entrypoint-initdb.d/init.sql
+    networks:
+      - wpapp-network
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+
+  phpmyadmin:
+    container_name: wpapp-phpmyadmin
+    image: phpmyadmin/phpmyadmin
+    ports:
+      - 8080:80
+    environment:
+      PMA_HOST: db
+      UPLOAD_LIMIT: 200M
+    networks:
+      - wpapp-network
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+
+  wordpress:
+    container_name: wpapp-wordpress
+    depends_on:
+      - db
+    image: wordpress:6.6.1-php8.3
+    ports:
+      - 3001:80
+    volumes:
+      - ./src:/var/www/html/
+      - ./php.ini:/usr/local/etc/php/php.ini
+    restart: always
+    networks:
+      - wpapp-network
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+
+  ngrok:
+    container_name: wpapp-ngrok
+    image: ngrok/ngrok:latest
+    restart: unless-stopped
+    command:
+      - "start"
+      - "--all"
+      - "--config"
+      - "/etc/ngrok.yml"
+    volumes:
+      - ./.docker/ngrok.yml:/etc/ngrok.yml
+    ports:
+      - 4551:4040
+    networks:
+      - wpapp-network
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+    depends_on:
+      - wordpress
+
+networks:
+  wpapp-network:
+    driver: bridge
+
+volumes:
+  mysql:
+  src:

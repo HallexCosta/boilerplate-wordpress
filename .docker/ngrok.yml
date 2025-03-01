@@ -1,0 +1,10 @@
+version: "2"
+authtoken: 2LWY4qQkFhtPBtpdkBqih6oc8ur_7L4tKUVY7YJAh2QxhkdkM
+
+tunnels:
+  app:
+    proto: http
+    addr: host.docker.internal:3001
+  mysql:
+    proto: tcp
+    addr: host.docker.internal:3306

@@ -1,0 +1,67 @@
+/* Create a custom checkbox */
+.checkbox {
+  display: inline-block;
+  cursor: pointer;
+  font-size: 16px;
+  user-select: none;
+  width: 100%;
+  position: relative;
+
+  &.error {
+    // .message-error {
+    //   display: block;
+    //   margin-top: 10px;
+    //   color: $error;
+    //   font-size: 12px;
+    // }
+
+    .checkmark {
+      border-color: $error;
+    }
+  }
+
+
+  .text {
+    padding-left: 26px;
+  }
+
+  input[type="checkbox"] {
+    &:checked {
+      ~ .checkmark {
+        background-color: $secondary;
+        border-color: $secondary;
+      }
+
+      ~ .checkmark {
+        &::after {
+          display: block;
+        }
+      }
+    }
+  }
+
+  .checkmark {
+    width: 16px;
+    height: 16px;
+    background-color: transparent;
+    border: 2px solid $secondary;
+    border-radius: 4px;
+    position: absolute;
+    left: 0;
+
+    &::after {
+      content: "";
+      position: absolute;
+      display: none;
+      left: 4px;
+      top: 1px;
+      width: 3px;
+      height: 8px;
+      border: solid white;
+      border-width: 0 2px 2px 0;
+      transform: rotate(45deg);
+    }
+  }
+
+ 
+}

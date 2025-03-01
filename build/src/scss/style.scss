@@ -1,0 +1,44 @@
+/*!
+Theme Name: wpapp
+Theme URI: #
+Author: HállanCosta
+Author URI: https://github.com/HallanCosta
+Version: 1.0
+Requires at least: 5.0
+Tested up to: 5.4
+Requires PHP: 8.0
+License: GNU General Public License v2 or later
+License URI: http://www.gnu.org/licenses/gpl-2.0.html
+Text Domain: Template by HallanCosta
+This theme, like WordPress, is licensed under the GPL.
+Use it to make something cool, have fun, and share what you've learned with others.
+*/
+
+// Variables
+@import 'variables';
+
+/// Breakpoints
+@import 'breakpoints';
+
+// Base (common styles through the project)
+@import 'base';
+
+// Utils
+@import 'utils';
+
+// Layout
+@import 'layout/header';
+@import 'layout/footer';
+
+// Components
+// @import 'components/container';
+// @import 'components/section';
+@import 'components/alert';
+@import 'components/box-invisible';
+@import 'components/checkbox';
+@import 'components/form';
+@import 'components/form-comment';
+@import 'components/comment-item';
+
+// Pages
+@import 'pages/home/form-section';

@@ -1,0 +1,46 @@
+{
+  "name": "build",
+  "version": "1.0.0",
+  "description": "",
+  "private": true,
+  "scripts": {
+    "build": "rollup -c --bundleConfigAsCjs",
+    "watch:docker": "rollup -c --watch --bundleConfigAsCjs --environment NODE_ENV:docker",
+    "watch:dev": "rollup -c --watch --bundleConfigAsCjs --environment NODE_ENV:dev"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "MIT",
+  "devDependencies": {
+    "@babel/core": "^7.21.3",
+    "@babel/polyfill": "^7.12.1",
+    "@babel/preset-env": "^7.20.2",
+    "@rollup/plugin-json": "^6.1.0",
+    "cssnano": "^5.1.15",
+    "normalize.css": "^8.0.1",
+    "postcss": "^8.4.21",
+    "postcss-preset-env": "^8.0.1",
+    "rollup": "^3.19.1",
+    "rollup-plugin-alias": "^2.2.0",
+    "rollup-plugin-babel": "^4.4.0",
+    "rollup-plugin-browsersync": "^1.0.0",
+    "rollup-plugin-commonjs": "^10.1.0",
+    "rollup-plugin-node-resolve": "^5.2.0",
+    "rollup-plugin-postcss": "^4.0.2",
+    "rollup-plugin-sass": "^1.12.19",
+    "rollup-plugin-terser": "^7.0.2",
+    "sass": "^1.59.3"
+  },
+  "dependencies": {
+    "@popperjs/core": "^2.11.8",
+    "@rollup/plugin-inject": "^5.0.5",
+    "@rollup/plugin-legacy": "^3.0.2",
+    "animate.css": "^4.1.1",
+    "bootstrap": "^5.3.3",
+    "imask": "^7.6.1",
+    "jquery": "^3.7.1",
+    "owl.carousel": "^2.3.4",
+    "toastify-js": "^1.12.0",
+    "wow.js": "^1.2.2"
+  }
+}

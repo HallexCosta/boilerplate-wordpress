@@ -1,0 +1,45 @@
+* {
+    box-sizing: border-box; // Include padding and border in the element's total width and height
+    margin: 0;
+    padding: 0;
+    outline: 0; // Remove outline
+}
+
+html {
+    height: 100%;
+}
+
+body {
+    position: relative;
+    min-height: 100%;
+    min-width: 320px;
+    background-color: #FBFBFB;
+    color: #000;
+    font-family: 'Poppins', sans-serif;
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+
+    user-select: none;
+}
+
+a {
+    cursor: pointer;
+}
+
+section
+{
+    position: relative;
+    width: 100%;
+}
+
+article {
+    display: flex;
+    flex-direction: column;
+}
+
+input {
+    border: 0;
+}
